@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<!-- <ciudad>Roma</ciudad>
+
+<fecha-de-nacimiento>1996-12-18</fecha-de-nacimiento>
+
+<hora>18:29:45</hora>
+
+<nota>7.5</nota>
+
+<apto>true</apto> -->
+    
+    <xs:element name="Ciudad" type="xs:string"></xs:element>
+    <xs:element name="fecha-de-nacimiento" type="xs:date"></xs:element>
+    <xs:element name="hora" type="xs:dateTime"></xs:element>
+    <xs:element name="nota" type="xs:decimal"></xs:element>
+    <xs:element name="apto" type="xs:boolean"></xs:element>
+</xs:schema>

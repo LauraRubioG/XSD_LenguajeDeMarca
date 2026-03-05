@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="fichas">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ficha" maxOccurs="50">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="nombre" type="xs:string"/>
+                            <xs:element name="edad" type="edadPersona"/>
+                        </xs:sequence>
+                        <xs:attribute name="numero" type="xs:int" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:simpleType name="edadPersona">
+        <xs:restriction base="xs:integer">
+            <xs:minExclusive value="-1"/>
+            <xs:maxExclusive value="131"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
+
+<!-- asi creamos como una "funcion" que hace que la podamos llamar e incluso la podamos usar en otros
+sitio como restricciones-->

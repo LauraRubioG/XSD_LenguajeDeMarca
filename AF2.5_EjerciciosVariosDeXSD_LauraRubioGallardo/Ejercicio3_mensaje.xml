@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<men:mensaje xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.abrirllave.com/mensaje Ejercicio3_mensaje.xsd"
+    xmlns:men="http://www.abrirllave.com/mensaje">
+    <origen>
+        <nombre>Ana Sanz Tin</nombre>
+        <ciudad>Pamplona</ciudad>
+    </origen>
+    <destino>
+        <nombre>Iker Rubio Mol</nombre>
+        <ciudad>Sevilla</ciudad>
+    </destino>
+    <men:asunto>¡Vuelve pronto!</men:asunto>
+</men:mensaje>
+
+<!-- en el xsd hemos definido el elemeto de mensaje utilizanod el atributo
+ref para referenciarlo al elemeto asunto.
+Por lo que son globales, los elementos globales son hijos directos de <xs:schema>
+y siempre deben estar cualificados con un prefijo de espacio de nombres
+POr lo tanto hya que calificarlos oblitoriamente ponendo el prefijo dejante en 
+mensaje y en asunto-->
+
+<!-- en la linea tres tambien j¡habia que cambiar el nombre de nuestro archivo -->
