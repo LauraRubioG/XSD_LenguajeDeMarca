@@ -7,18 +7,21 @@
                     <xs:complexType>
                         <xs:sequence>
                             <xs:element name="nombre" type="xs:string"/>
-                            <xs:element name="iniciales-al-reves">
-                                <xs:simpleType>
-                                    <xs:restriction base="xs:string">
-                                        <xs:pattern value="[A-Z][A-Z][A-Z]"/>
-                                    </xs:restriction>
-                                </xs:simpleType>
-                            </xs:element>
+                            <xs:element name="iniciales" type="inicialesNombre"/>
                             <xs:element name="edad" type="xs:integer"/>
+                            <xs:element name="iniciales-al-reves" type="inicialesNombre"/>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+    <!-- si lo ponemos aqui lo podemos usar para ambas -->
+    <xs:simpleType name="inicialesNombre">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[A-Z][A-Z][A-Z]"/>
+        </xs:restriction>
+    </xs:simpleType>
 </xs:schema>
+
+<!-- en caso de querer ponerlas en mayusculas ponemos  [a-zA-Z] -->
