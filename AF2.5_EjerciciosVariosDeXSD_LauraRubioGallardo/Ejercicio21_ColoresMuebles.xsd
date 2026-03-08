@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="muebles">
+        <xs:complexType>
+            <xs:sequence>
+               <!-- Ponemos el tipo de aqui llamando a la funcion --> 
+                <xs:element name="mueble" type="tipoColorMueble" maxOccurs="unbounded">
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <!-- sacamos la primera funcion del elmento -->
+    <xs:complexType name="tipoColorMueble">
+        <xs:simpleContent>
+            <xs:extension base="tipoMueble">
+                <xs:attribute name="color">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="blanco" />
+                            <xs:enumeration value="gris" />
+                            <xs:enumeration value="negro" />
+                            <xs:enumeration value="wengue" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    
+    <!-- y sacamos la segunda funcion -->
+    <xs:simpleType name="tipoMueble">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="armario" />
+            <xs:enumeration value="mesa" />
+            <xs:enumeration value="silla" />
+        </xs:restriction>
+    </xs:simpleType> 
+</xs:schema>

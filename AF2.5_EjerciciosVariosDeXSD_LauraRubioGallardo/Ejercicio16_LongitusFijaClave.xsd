@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    
+    <xs:element name="claveS2MAL">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <!-- asi no esta bien tiene que coger todo en uno 
+                no se pone la x, no hace falta solo el {10}-->
+                <xs:pattern value="([a-z][\d])x{10}"/>
+            </xs:restriction>
+        </xs:simpleType> 
+    </xs:element>
+    <xs:element name="claveS2BIEN">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <!-- lo ponemos asi para que pueda ir alternando
+                y no separado para que no coja uno xada vez en orden -->
+                <xs:pattern value="[a-zA-Z0-9]{10}"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    
+    <xs:element name="claveS1BIEN">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <!-- en este caso lo dividimos en dos, un para lo que hay
+                "dentro" y otro para la longitud-->
+                <xs:pattern value="[a-zA-Z0-9]10"/>
+                <xs:length value="10"></xs:length>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+</xs:schema>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="factura">
+        <xs:complexType>
+            <xs:all>
+                
+                <xs:element name="datos-emisor">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:group ref="datosempresa"></xs:group>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                
+                <xs:element name="datos-cliente">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:group ref="datosempresa"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="detalle-factura">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="linea" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        
+                                    </xs:sequence>
+                                    <xs:attribute name="codigo-articulo"></xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="importe" type="xs:int"></xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:group name="datosempresa">
+        <xs:sequence>
+            <xs:element name="nombre" type="xs:string"/>
+            <xs:element name="cif" type="xs:string"/>
+            <xs:element name="teléfono" type="xs:string"/>
+        </xs:sequence>
+    </xs:group>
+    
+</xs:schema>

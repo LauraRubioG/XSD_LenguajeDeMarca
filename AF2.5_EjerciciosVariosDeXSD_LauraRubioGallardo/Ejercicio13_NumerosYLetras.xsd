@@ -6,12 +6,25 @@
                 <xs:element name="ficha" maxOccurs="unbounded">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="codigo" type="xs:int"/>
-                            <xs:element name="Nombre" type="xs:string"/>
+                            <xs:element name="codigo" type="restrincionNumeroCodigo"/>
+                            <xs:element name="nombre" type="xs:string"/>
                         </xs:sequence>
+                        <xs:attribute name="numero" type="restrincionNumeroCodigo" use="required"/>
+                        <xs:attribute name="letra">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:pattern value="[XYZ]"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
                     </xs:complexType>
                 </xs:element>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+    <xs:simpleType name="restrincionNumeroCodigo">
+        <xs:restriction base="xs:integer">
+            <xs:pattern value="[01][0-9]"/>
+        </xs:restriction>
+    </xs:simpleType>
 </xs:schema>
