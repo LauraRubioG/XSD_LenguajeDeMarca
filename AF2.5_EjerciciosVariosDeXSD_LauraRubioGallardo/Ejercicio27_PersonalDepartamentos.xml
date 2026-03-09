@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <personal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="Ejercicio27_PersonalDepartamentos.xsd"
+    xsi:noNamespaceSchemaLocation="Ejercicio27_Prueba.xsd"
     fecha="2013-10-20" multinacional="false" moneda="Euro">
     <datos-generales>
         <nombre-empresa>Navarra 4 Internet</nombre-empresa>

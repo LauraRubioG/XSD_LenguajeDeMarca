@@ -7,7 +7,7 @@
                 <xs:element name="datos-emisor">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:group ref="datosempresa"></xs:group>
+                            <xs:group ref="datosEmpresa"/>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
@@ -15,41 +15,103 @@
                 <xs:element name="datos-cliente">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:group ref="datosempresa"/>
+                            <xs:group ref="datosEmpresa"></xs:group>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
+                
                 <xs:element name="detalle-factura">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="linea" maxOccurs="unbounded">
+                            <xs:element name="línea" maxOccurs="15">
                                 <xs:complexType>
                                     <xs:sequence>
-                                        
+                                        <xs:group ref="datosLineas"></xs:group>
                                     </xs:sequence>
-                                    <xs:attribute name="codigo-articulo"></xs:attribute>
-                                </xs:complexType>
-                            </xs:element>
-                                <xs:complexType>
-                                    <xs:sequence>
-                                        
-                                    </xs:sequence>
+                                    <xs:attributeGroup ref="atributoslineas"/>
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
-                        <xs:attribute name="importe" type="xs:int"></xs:attribute>
+                        <xs:attribute name="importe" type="tipoPrecio" use="required"></xs:attribute>
                     </xs:complexType>
                 </xs:element>
+                
             </xs:all>
-        </xs:complexType>
+            <xs:attributeGroup ref="atributosfacturas"></xs:attributeGroup>
+        </xs:complexType>    
     </xs:element>
     
-    <xs:group name="datosempresa">
+    
+ <!-- grupo para los datos de emisor y cliente -->   
+    <xs:group name="datosEmpresa">
         <xs:sequence>
-            <xs:element name="nombre" type="xs:string"/>
-            <xs:element name="cif" type="xs:string"/>
-            <xs:element name="teléfono" type="xs:string"/>
+            <xs:element name="nombre" type="tipoTexto"></xs:element>
+            <xs:element name="cif">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="\d{8}-[A-Z]"></xs:pattern>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="teléfono">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="\d{9}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
         </xs:sequence>
     </xs:group>
     
-</xs:schema>
+   <!-- tipo de Type para los texto como el nombre -->
+    <xs:simpleType name="tipoTexto">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="5"/>
+            <xs:maxLength value="20"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+ <!-- grupo para los datos de las lineas -->
+    <xs:group name="datosLineas">
+        <xs:sequence>
+            <xs:element name="descripción" type="tipoTexto"/>
+            <xs:element name="cantidad" type="xs:positiveInteger"/>
+            <xs:element name="oferta" minOccurs="0"/>
+            <xs:element name="pvp" type="tipoPrecio"></xs:element>
+        </xs:sequence>
+    </xs:group>
+
+<!-- tipo de Typo para los precio pvp e importe -->
+    <xs:simpleType name="tipoPrecio">
+        <xs:restriction base="xs:decimal">
+            <xs:minExclusive value="0"/>
+            <xs:maxInclusive value="999"/>
+            <xs:totalDigits value="5"/>
+            <xs:fractionDigits value="2"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+ <!-- atributos para las lineas -->
+    <xs:attributeGroup name="atributoslineas">
+        <xs:attribute name="código-artículo" type="xs:ID" use="required"/>
+        <xs:attribute name="tipo" type="tipoarticulo"/>
+    </xs:attributeGroup>
+    
+    
+  <!-- tipo de artuculo -->
+    <xs:simpleType name="tipoarticulo">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="DVD"/>
+            <xs:enumeration value="Libro"/>
+            <xs:enumeration value="varios"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+<!-- atributos para las facturas -->
+    <xs:attributeGroup name="atributosfacturas">
+        <xs:attribute name="número" type="xs:positiveInteger" use="required"/>
+        <xs:attribute name="fecha" type="xs:date" use="required"/>
+        <xs:attribute name="moneda" fixed="Euro"></xs:attribute>
+    </xs:attributeGroup>
+    
+    </xs:schema>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="reserva">
+        <xs:complexType>
+            <xs:all>
+                <!-- elemento cliente -->
+                <xs:element name="cliente">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:group ref="datosGenericos"></xs:group>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <!-- elemento agencia -->
+                <xs:element name="agencia">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:group ref="datosGenericos"></xs:group>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <!-- elemento lista servicio -->
+                <xs:element name="lista-servicios">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="servicio" minOccurs="1" maxOccurs="20">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="descripcion" type="tipoTextoLimitado"/>
+                                        <xs:element name="personas" type="xs:positiveInteger" minOccurs="1"/>
+                                        <xs:element name="vip" minOccurs="0"/>
+                                        <xs:element name="precio-unitario" type="tipoImporte"/>
+                                    </xs:sequence>
+                                    <!-- grupo atributos para servicio -->
+                                    <xs:attributeGroup ref="atributosServicio"></xs:attributeGroup>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <!-- atributo para lista de servicio -->
+                        <xs:attribute name="total" type="tipoImporte" use="required"></xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                
+            </xs:all>
+            <!-- grupo de atributos para reserva -->
+            <xs:attributeGroup ref="atributosReserva"></xs:attributeGroup>
+        </xs:complexType>
+    </xs:element>
+    
+    <!-- Agrupación datosGenericos -->
+    <xs:group name="datosGenericos">
+        <xs:sequence>
+            <xs:element name="nombre-completo" type="tipoTextoLimitado"/>
+            <xs:element name="documento">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[A-Z]{2}-\d{6}"></xs:pattern>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="telefono">
+                <xs:simpleType>
+                    <xs:restriction base="xs:positiveInteger">
+                        <xs:pattern value="\d{9}"></xs:pattern>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:group>
+    
+    <!-- type tipoTextoLimintado -->
+    <xs:simpleType name="tipoTextoLimitado">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="3"/>
+            <xs:maxLength value="40"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <!-- type tipoImporte -->
+    <xs:simpleType name="tipoImporte">
+        <xs:restriction base="xs:decimal">
+            <xs:minExclusive value="0"></xs:minExclusive>
+            <xs:maxInclusive value="999"></xs:maxInclusive>
+            <xs:totalDigits value="5"/>
+            <xs:fractionDigits value="3"></xs:fractionDigits>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <!-- grupo atributos servicio -->
+    <xs:attributeGroup name="atributosServicio">
+        <xs:attribute name="ref-servicio" type="xs:ID" use="required"/>
+        <xs:attribute name="modalidad" type="tipoModalidad"/>
+    </xs:attributeGroup>
+    
+    <!-- type tipoModalidad -->
+    <xs:simpleType name="tipoModalidad">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Basic"/>
+            <xs:enumeration value="Standard"/>
+            <xs:enumeration value="Premium"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <!-- grupo atributos reserva -->
+    <xs:attributeGroup name="atributosReserva">
+        <xs:attribute name="localizador" type="xs:string" use="required"/>
+        <xs:attribute name="fecha" type="xs:date" use="required"/>
+        <xs:attribute name="estado" fixed="CONFIRMADA"></xs:attribute>
+    </xs:attributeGroup>
+    
+    
+</xs:schema>

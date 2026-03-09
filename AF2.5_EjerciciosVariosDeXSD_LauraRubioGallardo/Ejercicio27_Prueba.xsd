@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="personal">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="datos-generales" type="tipodatosgenerales">
+                    <xs:complexType>
+                        <xs:sequence></xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="datos-departamento"></xs:element>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+    
+    <!-- tipo de datos generales -->
+    <xs:complexType name="tipodatosgenerales">
+        <xs:sequence>
+            <xs:element name="nombre-empresa" type="tipotexto"/>
+            <xs:element name="numero-trabajadores" type="xs:positiveInteger"/>
+            <xs:element name="sector">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:group ref="sectores"></xs:group>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <!-- tipotexto -->
+    <xs:simpleType name="tipotexto">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="40"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    
+    <!-- grupo sectores -->
+    <xs:group name="sectores">
+        <xs:choice>
+            <xs:element name="educacion"/>
+            <xs:element name="finanzas"/>
+            <xs:element name="tecnología"/>
+        </xs:choice>
+    </xs:group>
+    
+    
+    
+</xs:schema>

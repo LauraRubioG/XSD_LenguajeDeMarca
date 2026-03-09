@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reserva xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="SOL_XSD_MOD_B.xsd"
+    localizador="R-7890" fecha="2026-03-07" estado="CONFIRMADA">
+    
+    <cliente>
+        <nombre-completo>Laura Gomez Ruiz</nombre-completo>
+        <documento>AB-123456</documento>
+        <telefono>654987321</telefono>
+    </cliente>
+    
+    <agencia>
+        <nombre-completo>Viajes Feliz</nombre-completo>
+        <documento>XZ-987654</documento>
+        <telefono>900123456</telefono>
+    </agencia>
+    
+    <lista-servicios total="350.50">
+        <servicio ref-servicio="SRV-01" modalidad="Premium">
+            <descripcion>Visita guiada museo</descripcion>
+            <personas>2</personas>
+            <vip />
+            <precio-unitario>150.00</precio-unitario>
+        </servicio>
+        <servicio ref-servicio="SRV-02" modalidad="Standard">
+            <descripcion>Traslado aeropuerto</descripcion>
+            <personas>2</personas>
+            <precio-unitario>25.25</precio-unitario>
+        </servicio>
+    </lista-servicios>
+    
+</reserva>

@@ -43,7 +43,8 @@
             <xs:attributeGroup ref="atributosFactura"/>
         </xs:complexType>
     </xs:element>
-    
+
+<!-- grupo para datos emisor y cliente -->
     <xs:group name="datosEmpresa">
         <xs:sequence>
             <xs:element name="nombre" type="tipoTexto"/>
