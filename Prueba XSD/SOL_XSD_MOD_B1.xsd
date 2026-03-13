@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="reparacion">
+        <xs:complexType>
+            <xs:all>
+                
+                <xs:element name="taller">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="nombre-fiscal" type="tipoTextoLimitado"/>
+                            <xs:element name="codigo-registro">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:pattern value="[A-Z]{2}-\d{4}"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="telefono">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:positiveInteger">
+                                        <xs:pattern value="\d{9}"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                
+                <xs:element name="cliente">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="nombre-fiscal" type="tipoTextoLimitado"/>
+                            <xs:element name="codigo-registro">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:pattern value="[A-Z]{2}-\d{4}"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="telefono">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:positiveInteger">
+                                        <xs:pattern value="\d{9}"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                
+                <xs:element name="lista-piezas">
+                    <xs:complexType>
+                        <xs:sequence>
+                            
+                            <xs:element name="pieza" minOccurs="1" maxOccurs="20">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="descripcion" type="tipoTextoLimitado"/>
+                                        <xs:element name="cantidad" type="xs:positiveInteger"/>
+                                        <xs:element name="garantia" minOccurs="0">
+                                            <xs:complexType></xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="precio-unidad" type="tipoImporte"/>
+                                    </xs:sequence>
+                                    
+                                    <!-- atributos pieza -->
+                                    <xs:attribute name="ref-pieza" type="xs:ID" use="required"/>
+                                    <xs:attribute name="origen" type="tipoOrigen"/>
+                                    
+                                </xs:complexType>
+                            </xs:element>
+                            
+                        </xs:sequence>
+                        
+                        <!-- atributo lista-piezas -->
+                        <xs:attribute name="coste-total" type="tipoImporte" use="required"/>
+                        
+                    </xs:complexType>
+                </xs:element>
+                
+            </xs:all>
+            
+            <!-- atributos de reparacion -->
+            <xs:attribute name="factura" type="xs:string" use="required"/>
+            <xs:attribute name="fecha" type="xs:date" use="required"/>
+            <xs:attribute name="estado" type="xs:string" fixed="PENDIENTE"/>
+            
+        </xs:complexType>
+    </xs:element>
+    
+    <!-- tipo texto Limitado -->
+    <xs:simpleType name="tipoTextoLimitado">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="3"/>
+            <xs:maxLength value="40"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <!-- tipo Importe -->
+    <xs:simpleType name="tipoImporte">
+        <xs:restriction base="xs:decimal">
+            <xs:totalDigits value="5"/>
+            <xs:fractionDigits value="2"/>
+            <xs:minExclusive value="0"/>
+            <xs:maxInclusive value="999"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <!-- tipo Origen -->
+    <xs:simpleType name="tipoOrigen">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Original"/>
+            <xs:enumeration value="Compatible"/>
+            <xs:enumeration value="SegundaMano"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+</xs:schema>

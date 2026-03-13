@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reparacion xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="SOL_XSD_MOD_B1.xsd"
+    factura="F-2026-001" fecha="2026-03-12" estado="PENDIENTE">
+    
+    <taller>
+        <nombre-fiscal>Motor Express S.L.</nombre-fiscal>
+        <codigo-registro>TR-9876</codigo-registro>
+        <telefono>914445566</telefono>
+    </taller>
+    
+    <cliente>
+        <nombre-fiscal>Transportes Veloz</nombre-fiscal>
+        <codigo-registro>CL-1234</codigo-registro>
+        <telefono>600112233</telefono>
+    </cliente>
+    
+    <lista-piezas coste-total="350.75">
+        <pieza ref-pieza="PZ-001" origen="Original">
+            <descripcion>Filtro de aceite</descripcion>
+            <cantidad>2</cantidad>
+            <garantia />
+            <precio-unidad>45.50</precio-unidad>
+        </pieza>
+        <pieza ref-pieza="PZ-002" origen="Compatible">
+            <descripcion>Pastillas de freno</descripcion>
+            <cantidad>1</cantidad>
+            <precio-unidad>125.00</precio-unidad>
+        </pieza>
+    </lista-piezas>
+    
+</reparacion>
